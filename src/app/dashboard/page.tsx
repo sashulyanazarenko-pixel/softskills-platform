@@ -6,11 +6,17 @@ export default async function DashboardPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const { data: profile } = await supabase
+  const { data: profileData } = await supabase
     .from('profiles')
     .select('*')
     .eq('id', user!.id)
     .single();
+
+  const profile = profileData ?? {
+    id: user!.id,
+    full_name: user!.user_metadata?.full_name ?? user!.email ?? '',
+    role: user!.user_metadata?.role ?? 'candidate',
+  };
 
   const { data: results } = await supabase
     .from('assessment_results')

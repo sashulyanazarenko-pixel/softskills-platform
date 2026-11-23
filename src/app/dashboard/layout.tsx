@@ -8,13 +8,21 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   if (!user) redirect('/auth/login');
 
-  const { data: profile, error: profileError } = await supabase
+  const { data: profileData, error: profileError } = await supabase
     .from('profiles')
     .select('*')
     .eq('id', user.id)
     .single();
 
-  console.log('[dashboard] user.id:', user.id, '| profile.role:', profile?.role, '| profile.full_name:', profile?.full_name, '| error:', profileError?.message);
+  console.log('[dashboard] user.id:', user.id, '| profile.role:', profileData?.role, '| error:', profileError?.message);
+
+  // Fallback to user_metadata when profile query fails (e.g. RLS issue)
+  const profile = profileData ?? {
+    id: user.id,
+    full_name: user.user_metadata?.full_name ?? user.email ?? '',
+    role: user.user_metadata?.role ?? 'candidate',
+    created_at: user.created_at,
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
