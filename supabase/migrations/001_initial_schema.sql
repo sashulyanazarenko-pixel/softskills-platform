@@ -6,7 +6,8 @@ CREATE TYPE user_role AS ENUM ('admin', 'hr', 'manager', 'employee', 'candidate'
 CREATE TYPE skill_category AS ENUM (
   'communication', 'teamwork', 'leadership', 'problem_solving',
   'adaptability', 'emotional_intelligence', 'time_management',
-  'creativity', 'conflict_resolution', 'critical_thinking'
+  'creativity', 'conflict_resolution', 'critical_thinking',
+  'results_orientation', 'business_acumen'
 );
 CREATE TYPE question_type AS ENUM ('single_choice', 'multiple_choice', 'scale', 'open_text');
 CREATE TYPE plan_status AS ENUM ('draft', 'active', 'completed');

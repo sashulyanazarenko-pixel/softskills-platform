@@ -21,7 +21,9 @@ export type SkillCategory =
   | 'time_management'
   | 'creativity'
   | 'conflict_resolution'
-  | 'critical_thinking';
+  | 'critical_thinking'
+  | 'results_orientation'
+  | 'business_acumen';
 
 export const SKILL_CATEGORY_LABELS: Record<SkillCategory, string> = {
   communication: 'Коммуникация',
@@ -34,6 +36,8 @@ export const SKILL_CATEGORY_LABELS: Record<SkillCategory, string> = {
   creativity: 'Креативность',
   conflict_resolution: 'Разрешение конфликтов',
   critical_thinking: 'Критическое мышление',
+  results_orientation: 'Ориентация на качество и результат',
+  business_acumen: 'Понимание бизнеса',
 };
 
 export interface Assessment {
