@@ -248,6 +248,38 @@ function getRecommendations(skill: SkillCategory, level: string): string[] {
         'Руководите аналитическими сессиями по сложным стратегическим вопросам',
       ],
     },
+    results_orientation: {
+      low: [
+        'Ставьте SMART-цели и отслеживайте прогресс еженедельно',
+        'Внедрите систему OKR для личного планирования',
+        'Измеряйте конкретные результаты вместо затраченных усилий',
+      ],
+      medium: [
+        'Определите ключевые метрики успеха для каждого проекта',
+        'Практикуйте регулярные ретроспективы для оценки достижений',
+        'Изучите методологию управления по результатам (MBO)',
+      ],
+      high: [
+        'Внедряйте культуру результативности в команде через системы KPI',
+        'Разрабатывайте стратегии достижения амбициозных бизнес-целей',
+      ],
+    },
+    business_acumen: {
+      low: [
+        'Изучите основы финансовой грамотности: P&L, балансовый отчёт, денежный поток',
+        'Читайте деловые новости ежедневно (РБК, Forbes, Harvard Business Review)',
+        'Пройдите базовый курс по бизнес-стратегии',
+      ],
+      medium: [
+        'Изучите бизнес-модели успешных компаний вашей отрасли',
+        'Освойте основы маркетинга и управления клиентским опытом',
+        'Анализируйте конкурентную среду с помощью фреймворка Porter 5 Forces',
+      ],
+      high: [
+        'Участвуйте в стратегическом планировании на уровне компании',
+        'Разрабатывайте бизнес-кейсы для новых инициатив с финансовым обоснованием',
+      ],
+    },
   };
 
   return recs[skill]?.[level] || ['Развивайте данный навык через практику и обучение'];
@@ -295,6 +327,16 @@ function getResources(skill: SkillCategory) {
     critical_thinking: [
       { title: 'Thinking, Fast and Slow (Канеман)', type: 'book' },
       { title: 'Курс: Critical Thinking (Coursera)', type: 'course', url: 'https://coursera.org' },
+    ],
+    results_orientation: [
+      { title: 'Измерение работы (Пол Нивен)', type: 'book' },
+      { title: 'Курс: Goal Setting and Performance Management', type: 'course' },
+      { title: 'Практика OKR планирования', type: 'practice' },
+    ],
+    business_acumen: [
+      { title: 'Бизнес с нуля (Эрик Рис)', type: 'book' },
+      { title: 'Курс: Business Foundations (Wharton, Coursera)', type: 'course', url: 'https://coursera.org' },
+      { title: 'Harvard Business Review статьи', type: 'article', url: 'https://hbr.org' },
     ],
   };
 
