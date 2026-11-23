@@ -3,13 +3,14 @@ import { notFound } from 'next/navigation';
 import AssessmentRunner from '@/components/assessment/AssessmentRunner';
 import { SKILL_CATEGORY_LABELS, type SkillCategory } from '@/types';
 
-export default async function AssessmentPage({ params }: { params: { id: string } }) {
+export default async function AssessmentPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const supabase = await createClient();
 
   const { data: assessment } = await supabase
     .from('assessments')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
   if (!assessment) notFound();
@@ -17,7 +18,7 @@ export default async function AssessmentPage({ params }: { params: { id: string 
   const { data: questions } = await supabase
     .from('questions')
     .select('*')
-    .eq('assessment_id', params.id)
+    .eq('assessment_id', id)
     .order('order_index');
 
   return (

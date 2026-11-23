@@ -10,14 +10,15 @@ const PRIORITY_COLORS = {
 };
 const RESOURCE_ICONS = { book: '📚', course: '🎓', article: '📄', practice: '🏋️' };
 
-export default async function PlanDetailPage({ params }: { params: { id: string } }) {
+export default async function PlanDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   const { data: plan } = await supabase
     .from('development_plans')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
   if (!plan || plan.user_id !== user!.id) notFound();
